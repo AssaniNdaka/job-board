@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome - JobBoard{% endblock %}
+
+{% block content %}
+<!-- Blue Navbar (Landing Page only) -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0056b3;">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="#">JobBoard</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('services') }}">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('contact') }}">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="container text-center mt-5">
+  <h1 class="display-4 fw-bold text-primary">Welcome to JobBoard</h1>
+  <p class="lead text-secondary">Connecting Talent with Opportunities</p>
+
+  <!-- Search bar -->
+  <form action="{{ url_for('browse_jobs') }}" method="get" class="d-flex justify-content-center mt-4">
+    <input type="text" name="q" class="form-control w-50" placeholder="Search jobs...">
+    <button type="submit" class="btn btn-primary ms-2">Browse Jobs</button>
+  </form>
+
+  <!-- Motivational Taglines -->
+  <div class="row mt-5">
+    <div class="col-md-4">
+      <div class="p-3 border rounded shadow-sm bg-light">
+        <h5 class="fw-bold text-primary">Find Best Candidates</h5>
+        <p class="text-muted">Employers can discover skilled and passionate individuals for their teams.</p>
+      </div>
+    </div>
+    <div class="col-md-4 mt-3 mt-md-0">
+      <div class="p-3 border rounded shadow-sm bg-light">
+        <h5 class="fw-bold text-primary">Get Opportunities of Your Dream</h5>
+        <p class="text-muted">Job seekers can explore job openings that match their goals.</p>
+      </div>
+    </div>
+    <div class="col-md-4 mt-3 mt-md-0">
+      <div class="p-3 border rounded shadow-sm bg-light">
+        <h5 class="fw-bold text-primary">Bridge Talent & Opportunity</h5>
+        <p class="text-muted">We connect communities with impactful organizations.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="text-center mt-5 p-3 text-light" style="background-color: #0056b3;">
+  &copy; 2025 JobBoard Platform. All rights reserved.
+</footer>
+{% endblock %}

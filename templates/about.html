@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>About Our Platform</h2>
+    <p>
+      Our JobBoard Platform connects job seekers with employers in a simple, reliable, and user-friendly way. 
+      The platform enables organizations to post opportunities, while candidates can easily browse jobs, apply, 
+      and receive timely feedback.
+    </p>
+    <p>
+      We are committed to bridging the gap between talent and opportunity, ensuring transparency, accessibility, 
+      and equal chances for all users.
+    </p>
+
+    <!-- Back to Home button -->
+    <div class="mt-3">
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">Back to Home</a>
+    </div>
+</div>
+{% endblock %}

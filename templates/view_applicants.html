@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Applicants{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h3>Applicants for Job: {{ job.title }}</h3>
+    {% if applicants %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Candidate</th>
+                    <th>Email</th>
+                    <th>CV</th>
+                    <th>Cover Letter</th>
+                    <th>Status</th>
+                    <th>Applied At</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for a in applicants %}
+                <tr>
+                    <td>{{ a.candidate_name }}</td>
+                    <td>{{ a.candidate_email }}</td>
+                    <td>
+                        <a href="{{ url_for('view_cv', filename=a.cv_file) }}" target="_blank">View CV</a>
+                    </td>
+                    <td>{{ a.cover_letter }}</td>
+                    <td>
+                        <span class="badge 
+                            {% if a.status == 'Pending' %} bg-warning 
+                            {% elif a.status == 'Accepted' %} bg-success 
+                            {% elif a.status == 'Rejected' %} bg-danger 
+                            {% endif %}">
+                            {{ a.status }}
+                        </span>
+                    </td>
+                    <td>{{ a.applied_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                    <td>
+                        <!-- Form to change status -->
+                        <form method="POST" action="{{ url_for('update_applicant_status', application_id=a.id) }}">
+                            <select name="status" class="form-select form-select-sm d-inline-block w-auto" required>
+                                <option value="Pending" {% if a.status == 'Pending' %}selected{% endif %}>Pending</option>
+                                <option value="Accepted" {% if a.status == 'Accepted' %}selected{% endif %}>Accepted</option>
+                                <option value="Rejected" {% if a.status == 'Rejected' %}selected{% endif %}>Rejected</option>
+                            </select>
+                            <button type="submit" class="btn btn-sm btn-primary">Update</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No applicants yet for this job.</p>
+    {% endif %}
+</div>
+{% endblock %}

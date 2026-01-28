@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg rounded-3">
+                <div class="card-header bg-warning text-dark text-center">
+                    <h4>Edit Job</h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        
+                        <!-- Job Title -->
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Job Title</label>
+                            <input type="text" class="form-control" id="title" name="title"
+                                   value="{{ job.title }}" required>
+                        </div>
+
+                        <!-- Company Name -->
+                        <div class="mb-3">
+                            <label for="company_name" class="form-label">Company Name</label>
+                            <input type="text" class="form-control" id="company_name" name="company_name"
+                                   value="{{ job.company_name }}" required>
+                        </div>
+
+                        <!-- Job Description -->
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="4" required>{{ job.description }}</textarea>
+                        </div>
+
+                        <!-- Job Requirements -->
+                        <div class="mb-3">
+                            <label for="requirements" class="form-label">Requirements</label>
+                            <textarea class="form-control" id="requirements" name="requirements" rows="3" required>{{ job.requirements }}</textarea>
+                        </div>
+
+                        <!-- Why Work With Us -->
+                        <div class="mb-3">
+                            <label for="why_work_with_us" class="form-label">Why Work With Us?</label>
+                            <textarea class="form-control" id="why_work_with_us" name="why_work_with_us" rows="2">{{ job.why_work_with_us }}</textarea>
+                        </div>
+
+                        <!-- Mission -->
+                        <div class="mb-3">
+                            <label for="mission" class="form-label">Mission</label>
+                            <textarea class="form-control" id="mission" name="mission" rows="2">{{ job.mission }}</textarea>
+                        </div>
+
+                        <!-- Vision -->
+                        <div class="mb-3">
+                            <label for="vision" class="form-label">Vision</label>
+                            <textarea class="form-control" id="vision" name="vision" rows="2">{{ job.vision }}</textarea>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Cancel</a>
+                            <button type="submit" class="btn btn-warning">Update Job</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Apply for Job{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 650px;">
+  <h2 class="mb-4 text-primary">Apply for: {{ job.title }}</h2>
+
+  <form id="applicationForm"
+        method="POST"
+        action="{{ url_for('apply', job_id=job.id) }}"
+        enctype="multipart/form-data"
+        novalidate>
+
+    <!-- Full Name -->
+    <div class="mb-3">
+      <label for="full_name" class="form-label fw-semibold">Full Name</label>
+      <input type="text" class="form-control" id="full_name" name="full_name"
+             required maxlength="100" placeholder="Enter your full name">
+      <div class="invalid-feedback">Full name is required (max 100 characters).</div>
+    </div>
+
+    <!-- Email -->
+    <div class="mb-3">
+      <label for="email" class="form-label fw-semibold">Email Address</label>
+      <input type="email" class="form-control" id="email" name="email"
+             required maxlength="100" placeholder="Enter your email address">
+      <div class="invalid-feedback">Please provide a valid email address.</div>
+    </div>
+
+    <!-- CV Upload -->
+    <div class="mb-3">
+      <label for="cv" class="form-label fw-semibold">Upload CV/Resume (PDF, max 5MB)</label>
+      <input type="file" class="form-control" id="cv" name="cv" accept=".pdf" required>
+      <div class="form-text text-muted">Accepted format: PDF only. Max size: 5MB.</div>
+    </div>
+
+    <!-- Cover Letter Upload -->
+    <div class="mb-3">
+      <label for="cover_letter" class="form-label fw-semibold">Upload Cover Letter (PDF, max 5MB)</label>
+      <input type="file" class="form-control" id="cover_letter" name="cover_letter" accept=".pdf" required>
+      <div class="form-text text-muted">Accepted format: PDF only. Max size: 5MB.</div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="d-flex justify-content-between">
+      <button type="submit" class="btn btn-primary px-4">Submit Application</button>
+      <a href="{{ url_for('job_detail', job_id=job.id) }}" class="btn btn-secondary px-4">Cancel</a>
+    </div>
+  </form>
+</div>
+
+<!-- Client-side validation script -->
+<script>
+  document.getElementById('applicationForm').addEventListener('submit', function(event) {
+    const form = this;
+    const maxSize = 5 * 1024 * 1024; // 5MB
+
+    // HTML5 validation
+    if (!form.checkValidity()) {
+      event.preventDefault();
+      event.stopPropagation();
+      form.classList.add('was-validated');
+      return;
+    }
+
+    // File size validation
+    const cv = document.getElementById('cv').files[0];
+    const cover = document.getElementById('cover_letter').files[0];
+
+    if ((cv && cv.size > maxSize) || (cover && cover.size > maxSize)) {
+      event.preventDefault();
+      alert("File too large! Each file must be less than 5MB.");
+    }
+  });
+</script>
+{% endblock %}

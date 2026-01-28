@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Post a Job{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 700px;">
+    <h2 class="mb-4">Post a New Job</h2>
+    <form method="POST" action="{{ url_for('post_job') }}">
+        
+        <!-- Job Title -->
+        <div class="mb-3">
+            <label for="title" class="form-label">Job Title</label>
+            <input type="text" class="form-control" id="title" name="title" required maxlength="150" />
+        </div>
+
+        <!-- Company Name -->
+        <div class="mb-3">
+            <label for="company_name" class="form-label">Company Name</label>
+            <input type="text" class="form-control" id="company_name" name="company_name" required maxlength="100" />
+        </div>
+
+        <!-- Job Description -->
+        <div class="mb-3">
+            <label for="description" class="form-label">Job Description</label>
+            <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+        </div>
+
+        <!-- Requirements -->
+        <div class="mb-3">
+            <label for="requirements" class="form-label">Job Requirements</label>
+            <textarea class="form-control" id="requirements" name="requirements" rows="3" required></textarea>
+        </div>
+
+        <!-- Why Work With Us -->
+        <div class="mb-3">
+            <label for="why_work_with_us" class="form-label">Why Work With Us?</label>
+            <textarea class="form-control" id="why_work_with_us" name="why_work_with_us" rows="2"></textarea>
+        </div>
+
+        <!-- Mission -->
+        <div class="mb-3">
+            <label for="mission" class="form-label">Company Mission</label>
+            <textarea class="form-control" id="mission" name="mission" rows="2"></textarea>
+        </div>
+
+        <!-- Vision -->
+        <div class="mb-3">
+            <label for="vision" class="form-label">Company Vision</label>
+            <textarea class="form-control" id="vision" name="vision" rows="2"></textarea>
+        </div>
+
+        <!-- Buttons -->
+        <button type="submit" class="btn btn-success">Post Job</button>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+</div>
+{% endblock %}
